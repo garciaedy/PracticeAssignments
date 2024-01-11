@@ -5,7 +5,10 @@ package func_interface_mylabs_poc;
 //CODE The interface that operates on the generic type T.
 
 public class FuncInterfaceGeneric {
-
+    @FunctionalInterface
+    interface IValue<T>{
+        T GetValue();
+    }
     public static void main(String[] args) {
         // Declare a reference to the IValue functional interface
         // that will operate on the Float type
