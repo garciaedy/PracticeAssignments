@@ -11,9 +11,14 @@ package func_interface_mylabs_poc;
 
 //  WHAT YOU NEED TODO: Implement the FunctionalInterface  Square
 public class FuncInterface3 {
+
+    @FunctionalInterface
+    interface Square{
+        int calculate(int x);
+    }
     public static void main(String args[])
     {
-        int a = 5;
+        int a = 6;
 
         // lambda expression to define the calculate method
         Square s = (int x) -> x * x;
