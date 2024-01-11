@@ -15,7 +15,7 @@ public class FunctionJavaUtil {
         Double dblInput= 58.5;
 
         // Applying the function to get the result
-        Double dd = YOUR_CODE_HERE;
+        Double dd = half.apply(dblInput);
         System.out.println(dd);
     }
 }
