@@ -1,48 +1,8 @@
 package func_interface_mylabs_poc;
 
+
+
 //Begin Code
-
-
-
-public class Student
-{
-    int id;
-    String name;
-    double percentage;
-    String specialization;
-
-    public Student(int id, String name, double percentage, String specialization)
-    {
-        this.id = id;
-        this.name = name;
-        this.percentage = percentage;
-        this.specialization = specialization;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPercentage() {
-        return percentage;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    @Override
-    public String toString()
-    {
-        return id+"-"+name+"-"+percentage+"-"+specialization;
-    }
-}
-//  End code student obj
-
 
 // Main class with functional interface examples
 // Begin code for Main Caller
@@ -54,13 +14,15 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+
+
 //
 // Original Doc
 //
 // https://javaconceptoftheday.com/java-8-functional-interfaces/
 //
 
-public class mainEntryPoint {
+public class MainEntryPoint {
 
     public static void main(String[] args) {
 
@@ -86,11 +48,10 @@ public class mainEntryPoint {
 
         // List of students
         List<Student> mathematicsStudents = new ArrayList<Student>();
-        listOfStudents.add(new Student(111, "John", 81.0, "Mathematics"));
+
 
         // Predicate implementation for "Mathematics" specialization
         Predicate<Student> mathematicsPredicate = student -> "Mathematics".equals(student.getSpecialization());
-
         for (Student student : listOfStudents)
         {
             if (mathematicsPredicate.test(student))
@@ -115,22 +76,14 @@ public class mainEntryPoint {
 
         // For example, displaying all students with their percentage.
         // Consumer implementation for displaying students with their percentage
-        System.out.println("\n==============> Students with their percentage...");
-        Consumer<Student> percentageConsumer = student -> System.out.println(student.getName() + " : " + student.getPercentage());
-        for (Student student : listOfStudents) {
-            percentageConsumer.accept(student);
-        }
 
         // Lambda expression implementing Consumer : Displaying all students with
         // their percentage
 
+        // Consumer implementation for displaying students with their percentage
         System.out.println("\n==============> Students with their percentage...");
-        Consumer<Student> percentageConsumer = (Student student) -> {
-            System.out.println(student.getName()+" : "+student.getPercentage());
-        };
-
-        for (Student student : listOfStudents)
-        {
+        Consumer<Student> percentageConsumer = student -> System.out.println(student.getName() + " : " + student.getPercentage());
+        for (Student student : listOfStudents) {
             percentageConsumer.accept(student);
         }
 
@@ -145,21 +98,18 @@ public class mainEntryPoint {
         // For example, extracting only the names from listOfStudents.
 
         // Lambda expression implementing Function : Extracting only the names of all students
-
-        Function<Student, String> nameFunction = (Student Student) -> Student.getName();
-
+        Function<Student, String> nameFunction = Student::getName;
         List<String> studentNames = new ArrayList<String>();
-
-        for (Student student : listOfStudents)
-        {
+        for (Student student : listOfStudents) {
             studentNames.add(nameFunction.apply(student));
         }
 
         System.out.println("\n==============> Dump Student Name list...");
-        Iterator<String> nameIter = studentNames.iterator();
-        while (nameIter.hasNext()) {
-            System.out.println(nameIter.next());
+        for (String name : studentNames) {
+            System.out.println(name);
         }
+
+
 
         //====================================
         // d) Supplier – Supplies the objects
@@ -170,18 +120,14 @@ public class mainEntryPoint {
         // create new objects.
 
         // Lambda expression implementing Supplier : Creating a new Student
+        // Supplier implementation for creating a new Student
 
-        Supplier<Student> studentSupplier =
-                () -> new Student(111111, "New Student", 92.9, "Java 8");
-
+        Supplier<Student> studentSupplier = () -> new Student(111111, "New Student", 92.9, "Java 8");
         listOfStudents.add(studentSupplier.get());
 
         System.out.println("\n==============> Dump Additional Student list...");
-        Iterator<Student> stuIter = listOfStudents.iterator();
-        while (stuIter.hasNext()) {
-            System.out.println(stuIter.next());
+        for (Student student : listOfStudents) {
+            System.out.println(student);
         }
-
     }
-
 }
