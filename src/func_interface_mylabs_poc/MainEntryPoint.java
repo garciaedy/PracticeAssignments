@@ -98,9 +98,10 @@ public class MainEntryPoint {
         // For example, extracting only the names from listOfStudents.
 
         // Lambda expression implementing Function : Extracting only the names of all students
-        Function<Student, String> nameFunction = Student::getName;
+        Function<Student, String> nameFunction = (Student Student) -> Student.getName();
         List<String> studentNames = new ArrayList<String>();
-        for (Student student : listOfStudents) {
+        for (Student student : listOfStudents)
+        {
             studentNames.add(nameFunction.apply(student));
         }
 
